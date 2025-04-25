@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -24,6 +25,30 @@ export default {
 				ring: 'hsl(var(--ring))',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
+				coffee: {
+					50: '#f5f0e5',
+					100: '#e6d8c3',
+					200: '#d2b990',
+					300: '#c19c69',
+					400: '#b08248',
+					500: '#95683d',
+					600: '#7d5635',
+					700: '#64442c',
+					800: '#503625',
+					900: '#3d2a1e',
+				},
+				cream: {
+					50: '#fefef8',
+					100: '#fcf9e9',
+					200: '#f8f0cf',
+					300: '#f5e7b4',
+					400: '#f1d87a',
+					500: '#e8c341',
+					600: '#d4ad29',
+					700: '#b08b22',
+					800: '#8c6c23',
+					900: '#735821',
+				},
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))'
@@ -84,11 +109,20 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'cart-added': {
+					'0%, 100%': { transform: 'scale(1)' },
+					'50%': { transform: 'scale(1.1)' },
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'cart-added': 'cart-added 0.3s ease-in-out'
+			},
+			fontFamily: {
+				sans: ['Inter', 'sans-serif'],
+				serif: ['Playfair Display', 'serif']
 			}
 		}
 	},
