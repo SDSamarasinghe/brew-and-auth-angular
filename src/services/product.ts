@@ -15,8 +15,10 @@ const ProductService = {
   getAllProducts: async (): Promise<Product[]> => {
     try {
       const response = await api.get<Product[]>('/products');
-      return response.data;
+      // Ensure we always return an array
+      return Array.isArray(response.data) ? response.data : [];
     } catch (error) {
+      console.error("Error fetching products:", error);
       toast.error('Failed to fetch products');
       return [];
     }
@@ -27,6 +29,7 @@ const ProductService = {
       const response = await api.get<Product>(`/products/${id}`);
       return response.data;
     } catch (error) {
+      console.error("Error fetching product:", error);
       toast.error(`Failed to fetch product with id ${id}`);
       return null;
     }
@@ -38,6 +41,7 @@ const ProductService = {
       toast.success('Product created successfully');
       return response.data;
     } catch (error) {
+      console.error("Error creating product:", error);
       toast.error('Failed to create product');
       return null;
     }
@@ -49,6 +53,7 @@ const ProductService = {
       toast.success('Product updated successfully');
       return response.data;
     } catch (error) {
+      console.error("Error updating product:", error);
       toast.error('Failed to update product');
       return null;
     }
@@ -60,6 +65,7 @@ const ProductService = {
       toast.success('Product deleted successfully');
       return true;
     } catch (error) {
+      console.error("Error deleting product:", error);
       toast.error('Failed to delete product');
       return false;
     }

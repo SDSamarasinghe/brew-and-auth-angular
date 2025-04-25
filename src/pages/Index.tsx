@@ -16,15 +16,22 @@ const Index = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
-      const data = await ProductService.getAllProducts();
-      setProducts(data);
-      setLoading(false);
+      try {
+        const data = await ProductService.getAllProducts();
+        // Ensure products is always an array
+        setProducts(Array.isArray(data) ? data : []);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+        setProducts([]);
+      } finally {
+        setLoading(false);
+      }
     };
     
     fetchProducts();
   }, []);
   
-  // Extract unique categories from products
+  // Extract unique categories from products, ensuring products is an array
   const categories = ["all", ...new Set(products.map(product => product.category))];
   
   // Filter products based on active category
